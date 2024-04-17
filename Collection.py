@@ -12,8 +12,10 @@ def save_data():
 def load_data():
     try:
         with open(data_file, 'r') as file:
-             return json.load(file)
-
+            try:
+                return json.load(file)
+            except json.decoder.JSONDecodeError:
+                return defaultdict(list)
     except FileNotFoundError:
         return defaultdict(list)
 
@@ -27,7 +29,7 @@ def create_item(category, title, author, genre):
 def list_items(category):
     items = data[category]
     if not items:
-        print(f'{category} not found')
+        print(f'\n{category} not found')
     else:
         for i, item in enumerate(items, start=1):
             print(f'{category} {i}: {item}')
