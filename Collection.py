@@ -2,11 +2,15 @@ import json
 from collections import defaultdict
 
 data_file = 'data.json'
-try:
-    with open(data_file, 'r') as file:
-        data = defaultdict(list, json.load(file))
-except FileNotFoundError:
-    data = defaultdict(list)
+data = defaultdict(list)
+
+def load_data():
+    try:
+        with open(data_file, 'r') as file:
+            data = json.load(file)
+    except (FileNotFoundError, json.decoder.JSONDecodeError):
+        data = defaultdict(list)
+    return data
 
 def save_data():
     with open(data_file, 'w') as file:

@@ -1,6 +1,7 @@
 import Collection
 
 def run():
+    
     global data
     data = Collection.load_data()
 
