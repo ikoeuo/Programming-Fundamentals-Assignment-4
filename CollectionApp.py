@@ -11,15 +11,15 @@ def run():
 
         if choice == '1':
             while True:
-                category = input('Enter category (book/movie/song): ').lower()
-                if category == 'book' or 'card' or 'cd':
+                category = input('\nEnter category (book/movie/song): ').lower()
+                if category in ['book', 'movie', 'song']:
                     title = input('Enter title: ')
                     author = input('Enter author: ')
                     genre = input('Enter genre: ')
                     Collection.create_item(category, title, author, genre)
                     break
                 else: 
-                    print('Invalid category, Enter book/card/cd/')
+                    print('Invalid category, Enter (book/card/cd)\n')
 
         elif choice == '2':
             category = input('Enter category (book/movie/song): ').lower()
